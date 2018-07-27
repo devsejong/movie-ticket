@@ -19,9 +19,9 @@ public class Seat {
 
     private String row;
 
-    private String column;
+    private Integer column;
 
-    public Seat(Screen screen, String row, String column) {
+    public Seat(Screen screen, String row, Integer column) {
         setScreen(screen);
         this.row = row;
         this.column = column;

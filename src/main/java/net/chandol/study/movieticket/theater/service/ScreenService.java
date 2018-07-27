@@ -1,5 +1,6 @@
 package net.chandol.study.movieticket.theater.service;
 
+import lombok.AllArgsConstructor;
 import net.chandol.study.movieticket.theater.dto.ScreenCreateRequest;
 import net.chandol.study.movieticket.theater.dto.SeatCreateRequest;
 import net.chandol.study.movieticket.theater.model.Screen;
@@ -13,11 +14,10 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 @Service
+@AllArgsConstructor
 public class ScreenService {
-    @Autowired
-    private ScreenRepository screenRepository;
-    @Autowired
-    private TheaterRepository theaterRepository;
+    ScreenRepository screenRepository;
+    TheaterRepository theaterRepository;
 
     @Transactional
     public Screen createScreen(ScreenCreateRequest createRequest) {
@@ -26,4 +26,10 @@ public class ScreenService {
 
         return screenRepository.save(screen);
     }
+
+    @Transactional(readOnly = true)
+    public Screen getScreen(Long screenId){
+        return screenRepository.getOne(screenId);
+    }
+
 }
