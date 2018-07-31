@@ -14,7 +14,7 @@ import static org.assertj.core.api.Assertions.assertThat;
 @Transactional
 @RunWith(SpringRunner.class)
 @SpringBootTest
-public class MovieServiceTest {
+public class UserServiceTest {
 
     @Autowired
     MovieService movieService;
