@@ -37,14 +37,14 @@ public class SeatServiceTest {
         Screen screen = screenService.createScreen(theater, new ScreenCreateRequest("1관"));
 
         List<SeatCreateRequest> requests = asList(
-                new SeatCreateRequest(screen.getId(), "A", 1),
-                new SeatCreateRequest(screen.getId(), "A", 2),
-                new SeatCreateRequest(screen.getId(), "B", 1),
-                new SeatCreateRequest(screen.getId(), "B", 2)
+                new SeatCreateRequest("A", 1),
+                new SeatCreateRequest("A", 2),
+                new SeatCreateRequest("B", 1),
+                new SeatCreateRequest("B", 2)
         );
 
         // when
-        for(SeatCreateRequest request : requests){
+        for (SeatCreateRequest request : requests) {
             seatService.createSeat(screen, request);
         }
 
