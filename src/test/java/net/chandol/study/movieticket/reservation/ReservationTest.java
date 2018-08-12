@@ -20,7 +20,7 @@ public class ReservationTest {
     @Before
     public void initData() {
         // 영화관, 스크린, 좌석이 만들어져 있어야 한다.
-        theaterTestDataGenerator.createTestAllDatas();
+        theaterTestDataGenerator.createTestAllData();
 
         // 영화가 만들어져 있어야 하고
         movieTestDataGenerator.createMovies();

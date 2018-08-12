@@ -72,7 +72,7 @@ public class TheaterTestDataGenerator {
     }
 
     @Transactional
-    public List<Theater> createTestAllDatas() {
+    public List<Theater> createTestAllData() {
         List<Theater> theaters = createTestTheaters();
 
         List<Screen> screens = theaters.stream()
