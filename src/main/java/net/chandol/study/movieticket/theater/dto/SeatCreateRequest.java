@@ -4,15 +4,13 @@ import lombok.Data;
 
 @Data
 public class SeatCreateRequest {
-    private Long screenId;
     private String row;
     private Integer column;
 
     public SeatCreateRequest() {
     }
 
-    public SeatCreateRequest(Long screenId, String row, Integer column) {
-        this.screenId = screenId;
+    public SeatCreateRequest(String row, Integer column) {
         this.row = row;
         this.column = column;
     }

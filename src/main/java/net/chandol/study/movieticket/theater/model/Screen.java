@@ -21,9 +21,9 @@ public class Screen {
     @OneToMany(mappedBy = "screen")
     private List<Seat> seats = new ArrayList<>();
 
-    public Screen(String name, Theater theater) {
-        this.name = name;
+    public Screen(Theater theater, String name) {
         setTheater(theater);
+        this.name = name;
     }
 
     private void setTheater(Theater theater) {
