@@ -5,11 +5,10 @@ import lombok.ToString;
 import net.chandol.study.movieticket.movie.model.Movie;
 import net.chandol.study.movieticket.theater.model.Screen;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.Id;
-import javax.persistence.ManyToOne;
+import javax.persistence.*;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 @Getter
 @ToString
@@ -22,14 +21,22 @@ public class Showing {
     private Movie movie;
     @ManyToOne
     private Screen screen;
+    @OneToMany(mappedBy = "showing")
+    private List<ShowingSeat> showingSeats = new ArrayList<>();
     private LocalDateTime showingAt;
 
-    public Showing() {
+    protected Showing() {
     }
 
     public Showing(Movie movie, Screen screen, LocalDateTime showingAt) {
         this.movie = movie;
         this.screen = screen;
         this.showingAt = showingAt;
+    }
+
+    void addShowingSeat(ShowingSeat showingSeat) {
+        if (!showingSeats.contains(showingSeat)) {
+            showingSeats.add(showingSeat);
+        }
     }
 }
