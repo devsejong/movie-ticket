@@ -1,12 +1,12 @@
 package net.chandol.study.movieticket.showing.service;
 
 import net.chandol.study.movieticket.movie.model.Movie;
-import net.chandol.study.movieticket.movie.testutil.MovieTestDataGenerator;
+import net.chandol.study.movieticket.movie.testutil.MovieTestDataUtil;
 import net.chandol.study.movieticket.showing.dto.ShowingCreateRequest;
 import net.chandol.study.movieticket.showing.model.Showing;
 import net.chandol.study.movieticket.theater.model.Screen;
 import net.chandol.study.movieticket.theater.model.Theater;
-import net.chandol.study.movieticket.theater.testutil.TheaterTestDataGenerator;
+import net.chandol.study.movieticket.theater.testutil.TheaterTestDataUtil;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,23 +26,22 @@ import static org.junit.Assert.assertThat;
 @RunWith(SpringRunner.class)
 @Transactional
 public class ShowingServiceTest {
-
     @Autowired
-    TheaterTestDataGenerator theaterTestDataGenerator;
+    TheaterTestDataUtil theaterTestDataUtil;
     @Autowired
-    MovieTestDataGenerator movieTestDataGenerator;
+    MovieTestDataUtil movieTestDataUtil;
     @Autowired
     ShowingService showingService;
 
     @Test
     public void createShowing() {
         // before
-        List<Theater> testAllData = theaterTestDataGenerator.createTestAllData();
+        List<Theater> testAllData = theaterTestDataUtil.createTheaterAllData();
         List<Screen> screens = testAllData.stream().map(Theater::getScreens)
                 .flatMap(Collection::stream)
                 .collect(Collectors.toList());
 
-        List<Movie> movies = movieTestDataGenerator.createMovies();
+        List<Movie> movies = movieTestDataUtil.createMovies();
 
         // given
         LocalDateTime showingAt = LocalDateTime.parse("2018-08-12T10:35:00");

@@ -32,8 +32,8 @@ public class ScreenServiceTest {
         Screen screen = screenService.createScreen(theater, createRequest);
 
         // then
-        Screen retrevedScreen = screenService.getScreen(screen.getId());
-        Assertions.assertThat(retrevedScreen)
+        Screen retrievedScreen = screenService.getScreen(screen.getId());
+        Assertions.assertThat(retrievedScreen)
                 .hasFieldOrPropertyWithValue("name", "1관");
     }
 }

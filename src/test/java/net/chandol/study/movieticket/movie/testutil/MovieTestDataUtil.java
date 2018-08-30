@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class MovieTestDataGenerator {
+public class MovieTestDataUtil {
     @Autowired
     MovieService movieService;
 
@@ -28,5 +28,10 @@ public class MovieTestDataGenerator {
                 .collect(Collectors.toList());
 
         return movies;
+    }
+
+    @Transactional
+    public Movie getMovieByName(String movieName) {
+        return movieService.getMovieByName(movieName);
     }
 }

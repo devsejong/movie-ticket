@@ -10,6 +10,8 @@ import java.time.LocalDateTime;
 import java.util.ArrayList;
 import java.util.List;
 
+import static net.chandol.study.movieticket.showing.model.ShowingStatus.CREATED;
+
 @Getter
 @ToString
 @Entity
@@ -21,6 +23,7 @@ public class Showing {
     private Movie movie;
     @ManyToOne
     private Screen screen;
+    private ShowingStatus showingStatus = CREATED;
     @OneToMany(mappedBy = "showing")
     private List<ShowingSeat> showingSeats = new ArrayList<>();
     private LocalDateTime showingAt;

@@ -24,4 +24,9 @@ public class MovieService {
     public Movie getMovie(Long id) {
         return movieRepository.getOne(id);
     }
+
+    @Transactional(readOnly = true)
+    public Movie getMovieByName(String movieName) {
+        return movieRepository.getByName(movieName);
+    }
 }

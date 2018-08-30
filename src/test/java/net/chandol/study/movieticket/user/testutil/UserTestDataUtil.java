@@ -12,7 +12,7 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class UserTestDataGenerator {
+public class UserTestDataUtil {
 
     @Autowired
     UserService userService;
@@ -21,6 +21,7 @@ public class UserTestDataGenerator {
     public List<User> createUsers() {
         List<UserCreateRequest> requests = Arrays.asList(
                 new UserCreateRequest("sejong", "test1234"),
+                new UserCreateRequest("aming", "test0124"),
                 new UserCreateRequest("gamja", "woong")
         );
 
@@ -29,6 +30,11 @@ public class UserTestDataGenerator {
                 .collect(Collectors.toList());
 
         return users;
+    }
+
+    @Transactional
+    public User getUserByUsername(String name) {
+        return userService.getUserByUsername(name);
     }
 
 }

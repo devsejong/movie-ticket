@@ -36,4 +36,9 @@ public class ShowingSeat {
         this.showing = showing;
         showing.addShowingSeat(this);
     }
+
+    public void setUserAndStatus(User user, ShowingSeatStatus status) {
+        this.user = user;
+        this.status = status;
+    }
 }

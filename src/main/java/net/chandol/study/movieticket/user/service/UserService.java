@@ -24,5 +24,10 @@ public class UserService {
         return userRepository.getOne(id);
     }
 
+    @Transactional(readOnly = true)
+    public User getUserByUsername(String name) {
+        return userRepository.getByUsername(name);
+    }
+
 
 }

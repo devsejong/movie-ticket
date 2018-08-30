@@ -22,7 +22,7 @@ import static java.util.Arrays.asList;
 
 @Service
 @AllArgsConstructor
-public class TheaterTestDataGenerator {
+public class TheaterTestDataUtil {
     TheaterService theaterService;
     ScreenService screenService;
     SeatService seatService;
@@ -72,7 +72,7 @@ public class TheaterTestDataGenerator {
     }
 
     @Transactional
-    public List<Theater> createTestAllData() {
+    public List<Theater> createTheaterAllData() {
         List<Theater> theaters = createTestTheaters();
 
         List<Screen> screens = theaters.stream()
@@ -83,5 +83,26 @@ public class TheaterTestDataGenerator {
         screens.forEach(this::createTestSeats);
 
         return theaters;
+    }
+
+    @Transactional
+    public Theater getTheaterByName(String theaterName) {
+        return theaterService.getTheaterByName(theaterName);
+    }
+
+    @Transactional
+    public Screen getScreenByName(String theaterName, String screenName) {
+        Theater theater = theaterService.getTheaterByName(theaterName);
+        return theater.getScreens().stream()
+                .filter(s->s.getName().equals(screenName))
+                .findAny().get();
+    }
+
+    @Transactional
+    public Seat getSeatByName(String theaterName, String screenName, String seatRowColumn) {
+        Screen screen = getScreenByName(theaterName, screenName);
+        return screen.getSeats().stream()
+                .filter(s-> seatRowColumn.equals(s.getRow() + s.getColumn()))
+                .findFirst().get();
     }
 }
