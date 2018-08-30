@@ -9,6 +9,7 @@ import net.chandol.study.movieticket.showing.repository.ShowingRepository;
 import net.chandol.study.movieticket.showing.repository.ShowingSeatRepository;
 import net.chandol.study.movieticket.theater.model.Screen;
 import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -44,6 +45,6 @@ public class ShowingService {
 
     @Transactional
     public Page<Showing> findShowingByMovie(Movie movie) {
-        return showingRepository.findByMovie(movie);
+        return showingRepository.findByMovie(movie, PageRequest.of(0, 10));
     }
 }

@@ -1,6 +1,7 @@
 package net.chandol.study.movieticket.showing.model;
 
 import lombok.Getter;
+import lombok.ToString;
 import net.chandol.study.movieticket.theater.model.Seat;
 import net.chandol.study.movieticket.user.model.User;
 
@@ -11,6 +12,7 @@ import static net.chandol.study.movieticket.showing.model.ShowingSeatStatus.EMPT
 
 @Entity
 @Getter
+@ToString(exclude = "showing")
 public class ShowingSeat {
     @Id
     @GeneratedValue

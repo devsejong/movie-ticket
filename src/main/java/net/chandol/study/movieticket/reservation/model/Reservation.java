@@ -26,9 +26,18 @@ public class Reservation {
     @ManyToOne
     private Showing showing;
 
-    @OneToMany
-    @JoinTable(name="RESERVATION_SHOWING_SEAT",
-            joinColumns = @JoinColumn(name="RESERVATION_ID"),
-            inverseJoinColumns = @JoinColumn(name="SHOWING_SEAT_ID"))
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinTable(name = "RESERVATION_SHOWING_SEAT",
+            joinColumns = @JoinColumn(name = "RESERVATION_ID"),
+            inverseJoinColumns = @JoinColumn(name = "SHOWING_SEAT_ID"))
     private List<ShowingSeat> showingSeats = new ArrayList<>();
+
+    protected Reservation() {
+    }
+
+    public Reservation(User user, Showing showing, List<ShowingSeat> showingSeats) {
+        this.user = user;
+        this.showing = showing;
+        this.showingSeats = showingSeats;
+    }
 }

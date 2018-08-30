@@ -2,6 +2,8 @@ package net.chandol.study.movieticket.reservation;
 
 import net.chandol.study.movieticket.movie.model.Movie;
 import net.chandol.study.movieticket.movie.testutil.MovieTestDataUtil;
+import net.chandol.study.movieticket.reservation.model.Reservation;
+import net.chandol.study.movieticket.reservation.service.ReservationService;
 import net.chandol.study.movieticket.showing.model.Showing;
 import net.chandol.study.movieticket.showing.model.ShowingSeat;
 import net.chandol.study.movieticket.showing.model.ShowingSeatStatus;
@@ -18,6 +20,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.context.SpringBootTest;
 import org.springframework.data.domain.Page;
 import org.springframework.test.context.junit4.SpringRunner;
+import org.springframework.transaction.annotation.Transactional;
 
 import java.util.List;
 import java.util.stream.Collectors;
@@ -30,6 +33,7 @@ public class ReservationTest {
     @Autowired MovieTestDataUtil movieTestDataUtil;
     @Autowired ShowingTestDataUtil showingTestDataUtil;
     @Autowired ShowingService showingService;
+    @Autowired ReservationService reservationService;
 
     @Before
     public void setup() {
@@ -49,6 +53,7 @@ public class ReservationTest {
     }
 
     @Test
+    @Transactional
     public void 사용자는_영화를_예매할수_있다() {
         // given
         User user = userTestDataUtil.getUserByUsername("gamja");
@@ -60,13 +65,16 @@ public class ReservationTest {
         // when:: 첫번째 영화를 선택합니다.
         Showing showing = showingPage.getContent().get(0);
 
-        // 2자리를 선택한다음
+        // when:: 2자리를 선택한다음
         List<ShowingSeat> availableShowingSeat = showing.getShowingSeats().stream().filter(s->s.getStatus() == ShowingSeatStatus.EMPTY).collect(Collectors.toList());
-        List<ShowingSeat> selectedShowingSeat = availableShowingSeat.subList(0, 1);
+        List<ShowingSeat> targetShowingSeat = availableShowingSeat.subList(0, 2);
 
-        // 자리를 점유(?)한다
-
+        // 예약 전과정
+        Reservation reservation = reservationService.createWaitingReservation(user, showing, targetShowingSeat);
 
         // then
+        System.out.println(reservation.getShowing());
+        System.out.println(reservation.getShowingSeats());
+        System.out.println(reservation.getUser());
     }
 }
