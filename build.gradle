@@ -36,6 +36,7 @@ dependencies {
     compile('org.springframework.data:spring-data-envers')
     compile('org.springframework.boot:spring-boot-starter-security')
     compile('org.springframework.boot:spring-boot-starter-web')
+
     compile('org.projectlombok:lombok')
 
     compile('com.querydsl:querydsl-core')
@@ -44,6 +45,9 @@ dependencies {
 
     runtime('org.springframework.boot:spring-boot-devtools')
     runtime('com.h2database:h2')
+
+    // template 엔진으론 handlebars
+    compile('pl.allegro.tech.boot:handlebars-spring-boot-starter:0.3.0')
 
     testCompile('org.springframework.boot:spring-boot-starter-test')
     testCompile('org.springframework.security:spring-security-test')

@@ -16,9 +16,10 @@ public class MovieService {
     @Transactional
     public Movie createMovie(MovieCreateRequest request) {
         Movie movie = new Movie(request.getName());
+
+
         return movieRepository.save(movie);
     }
-
 
     @Transactional(readOnly = true)
     public Movie getMovie(Long id) {
