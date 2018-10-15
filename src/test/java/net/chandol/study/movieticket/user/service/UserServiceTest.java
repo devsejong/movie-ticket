@@ -30,4 +30,13 @@ public class UserServiceTest {
         User retrievedUser = userService.getUser(user.getId());
         Assertions.assertThat(retrievedUser.getUsername()).isEqualTo("sejong");
     }
+
+    @Test
+    public void userEventTet() {
+        // given
+        UserCreateRequest request = new UserCreateRequest("sejong", "test1234");
+        User user = userService.createUser(request);
+
+        user.test();
+    }
 }
